@@ -1,5 +1,5 @@
-#include <iostream>
-
+#include <iostream>             //UWAGA! POLOWA PROGRAMU ZBEDNA, INWENCJA TWORZCZA AUTORA, W ZADANIU WYSTARCZYLO ZNALEZC MAKSYMALNA
+                                //TUTAJ DODANA JEST JESZCZE MINIMALNA, BO TAK :).
 using namespace std;
 
 void od_zera (int tab[], int n)
