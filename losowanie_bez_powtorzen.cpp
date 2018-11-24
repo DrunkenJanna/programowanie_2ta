@@ -4,75 +4,48 @@
 
 using namespace std;
 
-void czyszczenie()
+void wypisywanie_tablicy (int tablica[], int ilewypisac)             // i = ile wypisac
 {
-    cin.clear();
-    cin.ignore(1236129372189739127321, '\n');
-
+    for (int i = 0; i < ilewypisac; i++)
+    cout << tablica[i] << ", ";
 }
-
-int wczytajLiczbe()
+bool czy_byla_wylosowana (int tablica [], int iLiczba, int ile)
 {
-    int liczba;
-    for (int a=0;;)
+    if (ile <= 0) return false;
+    for (int i = 0; i < ile; i++)
     {
-        cin >> liczba;
-        if (cin.fail() == 0)
-        {
-            return liczba;
-            break;
-        }
-        else
-        {
-            cout << "Podaj poprawna liczbe:" << endl;
-            czyszczenie();
-        }
+        if (tablica[i] == iLiczba) return true;
     }
+    return false;
 }
-
-
 
 int main()
 {
-    srand(time(NULL));
-    int a, b, wylosowana_liczba, przedzial1, przedzial2, podanaLiczba, liczbaStrzalow = 1;              //a-b przedzial liczbowy
-    cout << "Podaj przedzial liczbowy od: " << endl;
-    a = wczytajLiczbe();
-    cout << "do: " << endl;
-    b = wczytajLiczbe();
-    if (a > b)
+    const int rozmiar_tablicy = 5;
+    const int ilosc_liczb_losowych = 3;
+    srand( time ( NULL ));
+    int liczba, wylosowana;
+    int tablica[rozmiar_tablicy], tablica2[ilosc_liczb_losowych];
+    for (int a = 0; a < rozmiar_tablicy; a++)
     {
-        przedzial1 = a;
-        przedzial2 = b;
+    cout << "Podaj liczbe" << endl;
+    cin >> liczba;
+    tablica[a] = liczba;
     }
-    else
+    cout << "Tablica wyglada tak:" << endl;
+    wypisywanie_tablicy(tablica, rozmiar_tablicy);
+    cout << endl;
+    cout << "A wylosowane liczby tak:" << endl;
+    for (int i = 0; i < ilosc_liczb_losowych; i++)
     {
-        przedzial2 = a;
-        przedzial1 = b;
+        tablica2[i] = tablica [(rand() % rozmiar_tablicy ) + 0];
+        if (czy_byla_wylosowana(tablica2, tablica2[i], i)) i--;
+
     }
+    wypisywanie_tablicy(tablica2, ilosc_liczb_losowych);
 
-    wylosowana_liczba = ((rand() % (przedzial1 - przedzial2 + 1)) + przedzial2);
-    cout << wylosowana_liczba;
 
-    for (liczbaStrzalow;liczbaStrzalow > 0;liczbaStrzalow++)
-    {
-        cout << "Podaj liczbe" << endl;
-        podanaLiczba = wczytajLiczbe();
 
-        if (podanaLiczba == wylosowana_liczba) break;
-        if (podanaLiczba > wylosowana_liczba)
-        {
-            cout << "twoja liczba jest troche za duza :>" << endl;
-            continue;
-        }
-        if (podanaLiczba < wylosowana_liczba)
-        {
-            cout << "twoja liczba jest troche za mala :<" << endl;
-            continue;
-        }
-    }
-    cout << "Gratulacje! Podales/podalas poprawna liczbe" << endl;
-    cout << "Zajelo ci to razem taka liczbe strzalow:  " << liczbaStrzalow;
 
 
     return 0;
